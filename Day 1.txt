@@ -1,0 +1,13 @@
+Day 1
+
+1. Select all tables we created (and only those) from pg_class.
+
+  select relname from pg_class where relname not like '%\_%' and relkind = 'r';
+
+2. Write a query that finds the country name of the “LARP Club” event.
+
+  select co.country_name from events e join venues v on e.venue_id = v.venue_id join cities ci on v.postal_code = ci.postal_code and v.country_code=ci.country_code join countries co on co.country_code = ci.country_code where e.title = 'LARP Club';
+
+3. Alter the venues table to contain a boolean column called “active”, with the default value of TRUE
+
+  alter table venues add active boolean default TRUE;
